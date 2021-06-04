@@ -5,59 +5,34 @@ import MenuItem from "../menu-item/menu-item.component";
 import { Section } from "../../models/section";
 
 import "./directory.styles.scss";
-
-interface IProps {}
+import { from } from "rxjs";
 
 interface IState {
   sections: Section[];
 }
 
-export default class Directory extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+export default class Directory extends React.Component<any, IState> {
+  /**
+   *
+   */
+  constructor(props: any) {
     super(props);
 
     this.state = {
-      sections: [
-        {
-          title: "hats",
-          imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-          id: 1,
-          linkUrl: "shop/hats",
-        },
-        {
-          title: "jackets",
-          imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-          id: 2,
-          linkUrl: "shop/jackets",
-        },
-        {
-          title: "sneakers",
-          imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-          id: 3,
-          linkUrl: "shop/sneakers",
-        },
-        {
-          title: "womens",
-          imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-          size: "large",
-          id: 4,
-          linkUrl: "shop/womens",
-        },
-        {
-          title: "mens",
-          imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-          size: "large",
-          id: 5,
-          linkUrl: "shop/mens",
-        },
-      ],
+      sections: [],
     };
+  }
+
+  componentDidMount() {
+    from(
+      fetch("http://localhost:4200/sections").then((x) => x.json())
+    ).subscribe((x: Section[]) => this.setState({ sections: x }));
   }
 
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id ,size}: Section) => (
+        {this.state.sections.map(({ title, imageUrl, id, size }: Section) => (
           <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
         ))}
       </div>
