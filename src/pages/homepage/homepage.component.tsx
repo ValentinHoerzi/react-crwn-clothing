@@ -4,9 +4,7 @@ import "./homepage.styles.scss";
 
 const HomePage = () => (
   <div className="homepage">
-    <div>
       <Directory />
-    </div>
   </div>
 );
 
