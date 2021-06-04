@@ -12,16 +12,9 @@ interface IState {
 }
 
 export default class Directory extends React.Component<any, IState> {
-  /**
-   *
-   */
-  constructor(props: any) {
-    super(props);
-
-    this.state = {
-      sections: [],
-    };
-  }
+  state = {
+    sections: [],
+  };
 
   componentDidMount() {
     from(
@@ -32,9 +25,11 @@ export default class Directory extends React.Component<any, IState> {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }: Section) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
-        ))}
+        {this.state.sections.map(
+          ({ title, imageUrl, id, size, linkUrl }: Section) => (
+            <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl} />
+          )
+        )}
       </div>
     );
   }
