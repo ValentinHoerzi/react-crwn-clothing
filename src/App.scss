@@ -1,4 +1,14 @@
-body{
-    font-family: 'Open Sans Condensed';
-    padding: 20px 60px;
+body {
+  font-family: "Open Sans Condensed";
+  padding: 20px 60px;
+}
+
+a {
+  text-decoration: underline solid transparent;
+  color: black;
+  transition: text-decoration 1s ease;
+  
+  &:hover {
+    text-decoration: underline solid Currentcolor;
+  }
 }

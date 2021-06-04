@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 
 import "./menu-item.styles.scss";
 
-const MenuItem = ({ title, imageUrl, size, linkUrl, history,match }: any) => (
+const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }: any) => (
   <div
     className={`${size} menu-item`}
     style={{
